@@ -41,22 +41,11 @@
         var highlightLayer;
         function highlightFeature(e) {
             highlightLayer = e.target;
-
-            if (e.target.feature.geometry.type === 'LineString') {
-              highlightLayer.setStyle({
-                color: '#ffff00',
-              });
-            } else {
-              highlightLayer.setStyle({
-                fillColor: '#ffff00',
-                fillOpacity: 1
-              });
-            }
             highlightLayer.openPopup();
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[43.56653091782229,4.706732723031048],[44.165098018292184,5.572303701566871]]);
+        }).fitBounds([[42.32246832189244,2.7699230261615964],[44.729870904600496,6.23220694030479]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -91,9 +80,6 @@
         function pop_paca_1(feature, layer) {
             layer.on({
                 mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
                     if (typeof layer.closePopup == 'function') {
                         layer.closePopup();
                     } else {
@@ -158,9 +144,6 @@
         function pop_Lieu_touristique_2(feature, layer) {
             layer.on({
                 mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
                     if (typeof layer.closePopup == 'function') {
                         layer.closePopup();
                     } else {
@@ -188,7 +171,8 @@
                         <td colspan="2"><strong>longitude</strong><br />' + (feature.properties['longitude'] !== null ? autolinker.link(feature.properties['longitude'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>code_posta</strong><br />' + (feature.properties['code_posta'] !== null ? autolinker.link(feature.properties['code_posta'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">code_posta</th>\
+                        <td>' + (feature.properties['code_posta'] !== null ? autolinker.link(feature.properties['code_posta'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2"><strong>code_pos_1</strong><br />' + (feature.properties['code_pos_1'] !== null ? autolinker.link(feature.properties['code_pos_1'].toLocaleString()) : '') + '</td>\
@@ -239,9 +223,6 @@
         function pop_Lieu_visiterando_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
                     if (typeof layer.closePopup == 'function') {
                         layer.closePopup();
                     } else {
